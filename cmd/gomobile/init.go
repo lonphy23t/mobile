@@ -307,9 +307,11 @@ func goVersion() ([]byte, error) {
 	}
 	// TODO(crawshaw): this is a crude test for Go 1.5. After release,
 	// remove this and check it is not an old release version.
-	if !bytes.Contains(buildHelp, []byte("-pkgdir")) {
-		return nil, fmt.Errorf("installed Go tool does not support -pkgdir")
-	}
+	
+	//  in Go 1.5, go help build has not -pkgdir flag
+	// if !bytes.Contains(buildHelp, []byte("-pkgdir")) {
+	//	return nil, fmt.Errorf("installed Go tool does not support -pkgdir")
+	// }
 	return exec.Command(gobin, "version").CombinedOutput()
 }
 
